@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var WIDTH_RECT = 420;
 var HEIGHT_RECT = 270;
