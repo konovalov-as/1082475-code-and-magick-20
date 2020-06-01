@@ -15,6 +15,16 @@ var renderCloud = function (ctx, fillStyle, x, y) {
   ctx.fillRect(x, y, WIDTH_RECT, HEIGHT_RECT);
 };
 
+var renderBar = function (ctx, fillStyle, x, y, barWidth, barHeight) {
+  ctx.fillStyle = fillStyle;
+  ctx.fillRect(x, y, barWidth, barHeight);
+};
+
+var renderText = function (ctx, fillStyle, text, x, y) {
+  ctx.fillStyle = fillStyle;
+  ctx.fillText(text, x, y);
+};
+
 var getMaxElement = function (array) {
   var maxElement = array[0];
   for (var i = 1; i < array.length; i++) {
@@ -25,7 +35,7 @@ var getMaxElement = function (array) {
   return maxElement;
 };
 
-function getRandomReal(min, max) {
+function getRandomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
@@ -38,8 +48,8 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillStyle = 'black';
   ctx.textBaseline = 'top';
   ctx.font = '20px PT Mono';
-  ctx.fillText('Ура вы победили!', X_RECT + GAP * 4, Y_RECT + GAP * 3);
-  ctx.fillText('Список результатов:', X_RECT + GAP * 4, Y_RECT + GAP * 3 + LINE_HEIGHT + GAP);
+  renderText(ctx, ctx.fillStyle, 'Ура вы победили!', X_RECT + GAP * 4, Y_RECT + GAP * 3);
+  renderText(ctx, ctx.fillStyle, 'Список результатов:', X_RECT + GAP * 4, Y_RECT + GAP * 3 + LINE_HEIGHT + GAP);
 
   // Находим максимальное время игрока
   var maxTime = getMaxElement(times);
@@ -47,20 +57,20 @@ window.renderStatistics = function (ctx, players, times) {
 
   // Рисуем результат, шкалу, имя игрока
   for (var i = 0; i < players.length; i++) {
-    // Получаем случайное вещественое число вида 0.00
-    var randomReal = getRandomReal(0, 1);
+    // Получаем случайное число
+    var randomReal = getRandomNumber(0, 1);
     randomReal = +randomReal.toFixed(2);
     // результат
-    ctx.fillText(Math.round(times[i]), X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT - GAP * 2 - (BAR_MAX_HEIGHT * times[i]) / maxTime);
+    renderText(ctx, ctx.fillStyle, Math.round(times[i]), X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT - GAP * 2 - (BAR_MAX_HEIGHT * times[i]) / maxTime);
     // шкала
     if (players[i] === 'Вы') {
       ctx.fillStyle = COLOR_YOU;
     } else {
       ctx.fillStyle = 'hsla(240, 100%, 50%, ' + randomReal + ')';
     }
-    ctx.fillRect(X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT - GAP * 2, BAR_WIDTH, -(BAR_MAX_HEIGHT * times[i]) / maxTime + GAP * 2 + LINE_HEIGHT);
+    renderBar(ctx, ctx.fillStyle, X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT - GAP * 2, BAR_WIDTH, -(BAR_MAX_HEIGHT * times[i]) / maxTime + GAP * 2 + LINE_HEIGHT);
     // имя
     ctx.fillStyle = 'black';
-    ctx.fillText(players[i], X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT);
+    renderText(ctx, ctx.fillStyle, players[i], X_RECT + GAP * 10 + (BAR_WIDTH + GAP * 10) * i, Y_RECT + HEIGHT_RECT - GAP * 3 - LINE_HEIGHT);
   }
 };
