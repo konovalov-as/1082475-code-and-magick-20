@@ -1,8 +1,8 @@
 'use strict';
 
-function removeClass(element, className) {
+var removeClass = function (element, className) {
   element.classList.remove(className);
-}
+};
 
 var userDialog = document.querySelector('.setup');
 if (userDialog) {
@@ -14,42 +14,54 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-var firstName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var lastName = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var similarWizards = []; // похожие персонажи
 
 // получаем случайное число
-function getRandomNumber(min, max) {
+var getRandomNumber = function (min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; // Максимум и минимум включаются
-}
+};
 
-// получаем длину массива
-function getLengthArray(array) {
-  return array.length;
-}
-
-// получаем случайные данные
-function getRandomData(randomIndex, array) {
+// получаем случайный элемент
+var getRandomElement = function (randomIndex, array) {
   var result = array[randomIndex];
   return result;
-}
+};
 
-// заполняем массив объектами
-for (var i = 0; i < 4; i++) {
-  var randomFirstName = getRandomData(getRandomNumber(0, getLengthArray(firstName) - 1), firstName);
-  var randomLastName = getRandomData(getRandomNumber(0, getLengthArray(lastName) - 1), lastName);
-  var randomCoatColor = getRandomData(getRandomNumber(0, getLengthArray(coatColor) - 1), coatColor);
-  var randomEyesColor = getRandomData(getRandomNumber(0, getLengthArray(eyesColor) - 1), eyesColor);
-
-  similarWizards[i] = {
-    name: randomFirstName + ' ' + randomLastName,
-    coatColor: randomCoatColor,
-    eyesColor: randomEyesColor,
+// создаем объект волшебника
+var createSimilarWizard = function (characteristics) {
+  var wizard = {
+    name: characteristics.name,
+    coatColor: characteristics.coatColor,
+    eyesColor: characteristics.eyesColor,
   };
+  return wizard;
+};
+
+// заполняем массив похожими персонажами
+for (var i = 0; i < 4; i++) {
+  var randomName = getRandomElement(getRandomNumber(0, NAMES.length - 1), NAMES);
+  var randomLastName = getRandomElement(getRandomNumber(0, LAST_NAMES.length - 1), LAST_NAMES);
+  var randomCoatColor = getRandomElement(getRandomNumber(0, COAT_COLORS.length - 1), COAT_COLORS);
+  var randomEyesColor = getRandomElement(getRandomNumber(0, EYES_COLORS.length - 1), EYES_COLORS);
+  var randomNumber = getRandomNumber(0, 1);
+  var randomFulLName = '';
+
+  if (randomNumber === 0) {
+    randomFulLName = randomName + ' ' + randomLastName;
+  } else {
+    randomFulLName = randomLastName + ' ' + randomName;
+  }
+
+  var newWizard = createSimilarWizard({
+    name: randomFulLName, coatColor: randomCoatColor, eyesColor: randomEyesColor
+  });
+  similarWizards.push(newWizard);
 }
 
 // заполняем блок персонажа
@@ -61,7 +73,7 @@ var renderWizard = function (similarWizard) {
   return wizardElement;
 };
 
-// вывод блок персонажа на страницу
+// выводим блок персонажа на страницу
 var renderBloks = function () {
   var fragment = document.createDocumentFragment();
   for (var j = 0; j < similarWizards.length; j++) {
