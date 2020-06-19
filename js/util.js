@@ -26,5 +26,15 @@
     addClass: addClass,
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,
-  }
+    isEscEvent: function (evt, action) {
+      if (evt.key === window.const.ESC_KEY) {
+        action();
+      }
+    },
+    isEnterEvent: function (evt, action) {
+      if (evt.key === window.const.ENTER_KEY) {
+        action();
+      }
+    },
+  };
 })();

@@ -12,16 +12,18 @@
 
   // нажатие Esc
   var onPopupEscPress = function (evt) {
-    var KEY = 'Escape';
-    var activeTagName = 'INPUT';
-    if (evt.target.tagName === activeTagName) {
-      return;
-    } else {
-      if (evt.key === KEY) {
-        evt.preventDefault();
-        closePopup();
-      }
-    }
+    window.util.isEscEvent(evt, closePopup);
+
+    // var KEY = 'Escape';
+    // var activeTagName = 'INPUT';
+    // if (evt.target.tagName === activeTagName) {
+    //   return;
+    // } else {
+    //   if (evt.key === KEY) {
+    //     evt.preventDefault();
+    //     closePopup();
+    //   }
+    // }
   };
 
   // открывает модальное окно
@@ -68,30 +70,15 @@
 
     // мантия персонажа
     var wizardCoat = setupWizardForm.querySelector('.wizard-coat');
-    // меняет цвет мантии персонажа по клику
-    wizardCoat.addEventListener('click', function () {
-      var randomCoatColor = window.const.COAT_COLORS[window.util.getRandomNumber(0, window.const.COAT_COLORS.length - 1)];
-      wizardCoat.style.fill = randomCoatColor;
-      hiddenCoatColor.value = randomCoatColor;
-    });
+    window.colorize(wizardCoat, hiddenCoatColor);
 
     // глаза персонажа
     var wizardEyes = setupWizardForm.querySelector('.wizard-eyes');
-    // меняет цвет глаз персонажа по клику
-    wizardEyes.addEventListener('click', function () {
-      var randomEyesColor = window.const.EYES_COLORS[window.util.getRandomNumber(0, window.const.EYES_COLORS.length - 1)];
-      wizardEyes.style.fill = randomEyesColor;
-      hiddenEyesColor.value = randomEyesColor;
-    });
+    window.colorize(wizardEyes, hiddenEyesColor);
 
     // фаербол персонажа
     var wizardFireball = setupWizardForm.querySelector('.setup-fireball-wrap');
-    // меняет цвет фаербола персонажа по клику
-    wizardFireball.addEventListener('click', function () {
-      var randomFireballColor = window.const.FIREBALL_COLORS[window.util.getRandomNumber(0, window.const.FIREBALL_COLORS.length)];
-      wizardFireball.style.backgroundColor = randomFireballColor;
-      hiddenFireballColor.value = randomFireballColor;
-    });
+    window.colorize(wizardFireball, hiddenFireballColor);
   };
 
   // закрывает модальное окно и удаляет обработчик
@@ -103,20 +90,22 @@
   // открывает модальное окно по клику и нажатию Enter на автарке пользователя
   setupOpen.addEventListener('click', openPopup);
   setupOpen.addEventListener('keydown', function (evt) {
-    var KEY = 'Enter';
-    if (evt.key === KEY) {
-      evt.preventDefault();
-      openPopup();
-    }
+    window.util.isEnterEvent(evt, openPopup);
+    // var KEY = 'Enter';
+    // if (evt.key === KEY) {
+    //   evt.preventDefault();
+    //   openPopup();
+    // }
   });
 
   // закрывает модельное окно по нажатию Enter на кнопке закрытия
   setupClose.addEventListener('keydown', function (evt) {
-    var KEY = 'Enter';
-    if (evt.key === KEY) {
-      evt.preventDefault();
-      closePopup();
-    }
+    window.util.isEnterEvent(evt, closePopup);
+    // var KEY = 'Enter';
+    // if (evt.key === KEY) {
+    //   evt.preventDefault();
+    //   closePopup();
+    // }
   });
 
   // закрывает окно по клику
@@ -127,5 +116,5 @@
     setup: setup,
     setupClose: setupClose,
     setupOpen: setupOpen,
-  }
+  };
 })();
