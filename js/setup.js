@@ -64,4 +64,5 @@
   // показывает блок с персонажами
   var similarDialog = window.dialog.setup.querySelector('.setup-similar');
   window.util.removeClass(similarDialog, window.const.HIDDEN_CLASS);
+
 })();

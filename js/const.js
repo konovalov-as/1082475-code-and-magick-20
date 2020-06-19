@@ -1,11 +1,15 @@
 'use strict';
 
 (function () {
-  var ESC_KEY = 'Escape';
-  var ENTER_KEY = 'Enter';
+  var Key = {
+    ESCAPE: 'Escape',
+    ENTER: 'Enter',
+  };
+  var NameLength = {
+    MIN: 2,
+    MAX: 25,
+  };
   var HIDDEN_CLASS = 'hidden';
-  var MIN_NAME_LENGTH = 2;
-  var MAX_NAME_LENGTH = 25;
   var QUANTITY_WIZARDS = 4;
   var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -15,11 +19,9 @@
 
 
   window.const = {
-    ESC_KEY: ESC_KEY,
-    ENTER_KEY: ENTER_KEY,
+    Key: Key,
+    NameLength: NameLength,
     HIDDEN_CLASS: HIDDEN_CLASS,
-    MIN_NAME_LENGTH: MIN_NAME_LENGTH,
-    MAX_NAME_LENGTH: MAX_NAME_LENGTH,
     QUANTITY_WIZARDS: QUANTITY_WIZARDS,
     NAMES: NAMES,
     LAST_NAMES: LAST_NAMES,
@@ -27,4 +29,5 @@
     EYES_COLORS: EYES_COLORS,
     FIREBALL_COLORS: FIREBALL_COLORS,
   };
+
 })();

@@ -15,9 +15,8 @@
     return Math.floor(Math.random() * (max - min + 1)) + min; // Максимум и минимум включаются
   };
 
-  var getRandomElement = function (randomIndex, arrays) {
-    var result = arrays[randomIndex];
-    return result;
+  var getRandomElement = function (randomIndex, items) {
+    return items[randomIndex];
   };
 
 
@@ -27,14 +26,15 @@
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,
     isEscEvent: function (evt, action) {
-      if (evt.key === window.const.ESC_KEY) {
+      if (evt.key === window.const.Key.ESCAPE) {
         action();
       }
     },
     isEnterEvent: function (evt, action) {
-      if (evt.key === window.const.ENTER_KEY) {
+      if (evt.key === window.const.Key.ENTER) {
         action();
       }
     },
   };
+
 })();

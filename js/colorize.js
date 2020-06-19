@@ -5,13 +5,13 @@
     var color = '';
     switch (partElement) {
       case 'wizard-coat':
-        color = window.const.COAT_COLORS[Math.floor(window.const.COAT_COLORS.length * Math.random())];
+        color = window.const.COAT_COLORS[window.util.getRandomNumber(0, window.const.COAT_COLORS.length - 1)];
         break;
       case 'wizard-eyes':
-        color = window.const.EYES_COLORS[Math.floor(window.const.EYES_COLORS.length * Math.random())];
+        color = window.const.EYES_COLORS[window.util.getRandomNumber(0, window.const.EYES_COLORS.length - 1)];
         break;
       case 'setup-fireball-wrap':
-        color = window.const.FIREBALL_COLORS[Math.floor(window.const.FIREBALL_COLORS.length * Math.random())];
+        color = window.const.FIREBALL_COLORS[window.util.getRandomNumber(0, window.const.FIREBALL_COLORS.length - 1)];
         break;
     }
     return color;
@@ -29,7 +29,6 @@
       }
       if (element.tagName.toLowerCase() === 'use') {
         element.style.fill = color;
-        return;
       }
     });
   };
