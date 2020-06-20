@@ -19,22 +19,25 @@
     return items[randomIndex];
   };
 
+  var doEscEvent = function (evt, action) {
+    if (evt.key === window.const.Key.ESCAPE) {
+      action();
+    }
+  };
+
+  var doEnterEvent = function (evt, action) {
+    if (evt.key === window.const.Key.ENTER) {
+      action();
+    }
+  };
 
   window.util = {
     removeClass: removeClass,
     addClass: addClass,
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,
-    isEscEvent: function (evt, action) {
-      if (evt.key === window.const.Key.ESCAPE) {
-        action();
-      }
-    },
-    isEnterEvent: function (evt, action) {
-      if (evt.key === window.const.Key.ENTER) {
-        action();
-      }
-    },
+    doEscEvent: doEscEvent,
+    doEnterEvent: doEnterEvent,
   };
 
 })();

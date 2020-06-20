@@ -22,7 +22,8 @@
   };
 
   // заполняем массив похожими персонажами
-  for (var i = 0; i < window.const.QUANTITY_WIZARDS; i++) {
+  var wizardsCount = 4;
+  for (var i = 0; i < wizardsCount; i++) {
     var randomName = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.NAMES.length - 1), window.const.NAMES);
     var randomLastName = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.LAST_NAMES.length - 1), window.const.LAST_NAMES);
     var randomCoatColor = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.COAT_COLORS.length - 1), window.const.COAT_COLORS);

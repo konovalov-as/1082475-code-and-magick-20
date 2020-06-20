@@ -12,7 +12,7 @@
 
   // нажатие Esc
   var onPopupEscPress = function (evt) {
-    window.util.isEscEvent(evt, closePopup);
+    window.util.doEscEvent(evt, closePopup);
   };
 
   // открывает модальное окно
@@ -88,12 +88,12 @@
   // открывает модальное окно по клику и нажатию Enter на автарке пользователя
   setupOpen.addEventListener('click', openPopup);
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.doEnterEvent(evt, openPopup);
   });
 
   // закрывает модельное окно по нажатию Enter на кнопке закрытия
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.doEnterEvent(evt, closePopup);
   });
 
   // закрывает окно по клику
