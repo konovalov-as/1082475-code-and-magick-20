@@ -12,11 +12,11 @@
   var wizards = [];
 
   // создаем объект волшебника
-  var createWizard = function (characteristic) {
+  var createWizard = function (randomFullName, randomCoatColor, randomEyesColor) {
     var wizard = {
-      name: characteristic.name,
-      coatColor: characteristic.coatColor,
-      eyesColor: characteristic.eyesColor,
+      name: randomFullName,
+      coatColor: randomCoatColor,
+      eyesColor: randomEyesColor,
     };
     return wizard;
   };
@@ -37,9 +37,7 @@
       randomFullName = randomLastName + ' ' + randomName;
     }
 
-    var newWizard = createWizard({
-      name: randomFullName, coatColor: randomCoatColor, eyesColor: randomEyesColor
-    });
+    var newWizard = createWizard(randomFullName, randomCoatColor, randomEyesColor);
     wizards.push(newWizard);
   }
 
