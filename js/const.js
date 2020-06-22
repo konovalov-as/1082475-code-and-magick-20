@@ -9,6 +9,13 @@
     MIN: 2,
     MAX: 25,
   };
+  var Url = {
+    POST: 'https://javascript.pages.academy/code-and-magick',
+    GET: 'https://javascript.pages.academy/code-and-magick/data',
+  };
+  var StatusCode = {
+    OK: 200
+  };
   var HIDDEN_CLASS = 'hidden';
   var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -24,11 +31,14 @@
   var BAR_WIDTH = 40;
   var BAR_MAX_HEIGHT = 150;
   var COLOR_YOU = 'rgba(255, 0, 0, 1)';
+  var TIMEOUT_IN_MS = 10000;
 
 
   window.const = {
     Key: Key,
     NameLength: NameLength,
+    Url: Url,
+    StatusCode: StatusCode,
     HIDDEN_CLASS: HIDDEN_CLASS,
     NAMES: NAMES,
     LAST_NAMES: LAST_NAMES,
@@ -44,6 +54,7 @@
     BAR_WIDTH: BAR_WIDTH,
     BAR_MAX_HEIGHT: BAR_MAX_HEIGHT,
     COLOR_YOU: COLOR_YOU,
+    TIMEOUT_IN_MS: TIMEOUT_IN_MS,
   };
 
 })();
