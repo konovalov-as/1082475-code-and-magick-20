@@ -8,60 +8,49 @@
     .content
     .querySelector('.setup-similar-item');
 
-  // массив для похожих персонажей
-  var wizards = [];
-
-  // создаем объект волшебника
-  var createWizard = function (randomFullName, randomCoatColor, randomEyesColor) {
-    var wizard = {
-      name: randomFullName,
-      coatColor: randomCoatColor,
-      eyesColor: randomEyesColor,
-    };
-    return wizard;
-  };
-
-  // заполняем массив похожими персонажами
-  var wizardsCount = 4;
-  for (var i = 0; i < wizardsCount; i++) {
-    var randomName = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.NAMES.length - 1), window.const.NAMES);
-    var randomLastName = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.LAST_NAMES.length - 1), window.const.LAST_NAMES);
-    var randomCoatColor = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.COAT_COLORS.length - 1), window.const.COAT_COLORS);
-    var randomEyesColor = window.util.getRandomElement(window.util.getRandomNumber(0, window.const.EYES_COLORS.length - 1), window.const.EYES_COLORS);
-    var randomNumber = window.util.getRandomNumber(0, 1);
-    var randomFullName = '';
-
-    if (randomNumber === 0) {
-      randomFullName = randomName + ' ' + randomLastName;
-    } else {
-      randomFullName = randomLastName + ' ' + randomName;
-    }
-
-    var newWizard = createWizard(randomFullName, randomCoatColor, randomEyesColor);
-    wizards.push(newWizard);
-  }
-
-  // заполняем блок персонажа
+  // заполняем блок волшебника
   var fillWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
 
-  // выводим блок персонажа на страницу
-  var renderWizards = function () {
+  // отправляем данные на сервер
+  var wizardForm = window.dialog.setup.querySelector('.setup-wizard-form');
+  var onFormSubmit = function (evt) {
+    window.backend.save(new FormData(wizardForm), function () {
+      window.dialog.setup.classList.add(window.const.HIDDEN_CLASS);
+    }, onError);
+    evt.preventDefault();
+  };
+  wizardForm.addEventListener('submit', onFormSubmit);
+
+  // количество волшебников
+  var wizardsCount = 4;
+
+  // получаем волшебников с сервера
+  var onLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var j = 0; j < wizards.length; j++) {
-      fragment.appendChild(fillWizard(wizards[j]));
+    for (var i = 0; i < wizardsCount; i++) {
+      var randomIndex = window.util.getRandomNumber(0, wizards.length - 1);
+      fragment.appendChild(fillWizard(wizards[randomIndex]));
     }
     similarListElement.appendChild(fragment);
-  };
-  renderWizards();
 
-  // показывает блок с персонажами
-  var similarDialog = window.dialog.setup.querySelector('.setup-similar');
-  window.util.removeClass(similarDialog, window.const.HIDDEN_CLASS);
+    var similarDialog = window.dialog.setup.querySelector('.setup-similar');
+    similarDialog.classList.remove(window.const.HIDDEN_CLASS);
+  };
+
+  var onError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.classList.add('error-message');
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.backend.load(onLoad, onError);
 
 })();

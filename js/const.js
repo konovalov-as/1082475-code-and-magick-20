@@ -9,9 +9,14 @@
     MIN: 2,
     MAX: 25,
   };
+  var Url = {
+    POST: 'https://javascript.pages.academy/code-and-magick',
+    GET: 'https://javascript.pages.academy/code-and-magick/data',
+  };
+  var StatusCode = {
+    OK: 200
+  };
   var HIDDEN_CLASS = 'hidden';
-  var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
@@ -24,14 +29,15 @@
   var BAR_WIDTH = 40;
   var BAR_MAX_HEIGHT = 150;
   var COLOR_YOU = 'rgba(255, 0, 0, 1)';
+  var TIMEOUT_IN_MS = 10000;
 
 
   window.const = {
     Key: Key,
     NameLength: NameLength,
+    Url: Url,
+    StatusCode: StatusCode,
     HIDDEN_CLASS: HIDDEN_CLASS,
-    NAMES: NAMES,
-    LAST_NAMES: LAST_NAMES,
     COAT_COLORS: COAT_COLORS,
     EYES_COLORS: EYES_COLORS,
     FIREBALL_COLORS: FIREBALL_COLORS,
@@ -44,6 +50,7 @@
     BAR_WIDTH: BAR_WIDTH,
     BAR_MAX_HEIGHT: BAR_MAX_HEIGHT,
     COLOR_YOU: COLOR_YOU,
+    TIMEOUT_IN_MS: TIMEOUT_IN_MS,
   };
 
 })();

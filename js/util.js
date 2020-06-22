@@ -1,14 +1,6 @@
 'use strict';
 
 (function () {
-  var removeClass = function (element, className) {
-    element.classList.remove(className);
-  };
-
-  var addClass = function (element, className) {
-    element.classList.add(className);
-  };
-
   var getRandomNumber = function (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -32,8 +24,6 @@
   };
 
   window.util = {
-    removeClass: removeClass,
-    addClass: addClass,
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,
     doEscEvent: doEscEvent,
