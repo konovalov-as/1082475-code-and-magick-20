@@ -18,10 +18,10 @@
   };
 
   // отправляем данные на сервер
-  var wizardForm = window.dialog.setup.querySelector('.setup-wizard-form'); // dialog.js
+  var wizardForm = window.dialog.setup.querySelector('.setup-wizard-form');
   var onFormSubmit = function (evt) {
     window.backend.save(new FormData(wizardForm), function () {
-      window.util.addClass(window.dialog.setup, window.const.HIDDEN_CLASS);
+      window.dialog.setup.classList.add(window.const.HIDDEN_CLASS);
     }, onError);
     evt.preventDefault();
   };
@@ -40,16 +40,12 @@
     similarListElement.appendChild(fragment);
 
     var similarDialog = window.dialog.setup.querySelector('.setup-similar');
-    window.util.removeClass(similarDialog, window.const.HIDDEN_CLASS);
+    similarDialog.classList.remove(window.const.HIDDEN_CLASS);
   };
 
   var onError = function (errorMessage) {
     var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: darkorange;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
+    node.classList.add('error-message');
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);

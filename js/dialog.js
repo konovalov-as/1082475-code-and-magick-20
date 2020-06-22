@@ -17,7 +17,7 @@
 
   // открывает модальное окно
   var openPopup = function () {
-    window.util.removeClass(setup, window.const.HIDDEN_CLASS);
+    setup.classList.remove(window.const.HIDDEN_CLASS);
     document.addEventListener('keydown', onPopupEscPress);
 
     // форма
@@ -81,7 +81,7 @@
 
   // закрывает модальное окно и удаляет обработчик
   var closePopup = function () {
-    window.util.addClass(setup, window.const.HIDDEN_CLASS);
+    setup.classList.add(window.const.HIDDEN_CLASS);
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
