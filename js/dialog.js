@@ -66,20 +66,14 @@
     var hiddenEyesColor = setupWizardForm.querySelector('input[name=eyes-color]');
     var hiddenFireballColor = setupWizardForm.querySelector('input[name=fireball-color]');
 
-    var lastTimeout;
-
     var wizardCoat = setupWizardForm.querySelector('.wizard-coat');
     wizardCoat.addEventListener('click', function () {
       var elementColor = window.const.COAT_COLORS[window.util.getRandomNumber(0, window.const.COAT_COLORS.length - 1)];
       wizardCoat.style.fill = elementColor;
       hiddenCoatColor.value = elementColor;
       window.dialog.coatColor = elementColor;
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-      }
-      lastTimeout = window.setTimeout(function () {
-        window.setup.updateWizards();
-      }, 300);
+
+      window.debounce(window.setup.updateWizards);
     });
 
 
@@ -89,12 +83,8 @@
       wizardEyes.style.fill = elementColor;
       hiddenEyesColor.value = elementColor;
       window.dialog.eyesColor = elementColor;
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-      }
-      lastTimeout = window.setTimeout(function () {
-        window.setup.updateWizards();
-      }, 300);
+
+      window.debounce(window.setup.updateWizards);
     });
 
     var wizardFireball = setupWizardForm.querySelector('.setup-fireball-wrap');
