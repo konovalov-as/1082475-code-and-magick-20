@@ -30,6 +30,8 @@
   var BAR_MAX_HEIGHT = 150;
   var COLOR_YOU = 'rgba(255, 0, 0, 1)';
   var TIMEOUT_IN_MS = 10000;
+  var WIZARDS_COUNT = 4;
+  var DEBOUNCE_INTERVAL = 300; // ms
 
 
   window.const = {
@@ -51,6 +53,8 @@
     BAR_MAX_HEIGHT: BAR_MAX_HEIGHT,
     COLOR_YOU: COLOR_YOU,
     TIMEOUT_IN_MS: TIMEOUT_IN_MS,
+    WIZARDS_COUNT: WIZARDS_COUNT,
+    DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,
   };
 
 })();
