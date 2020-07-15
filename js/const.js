@@ -32,6 +32,7 @@
   var TIMEOUT_IN_MS = 10000;
   var WIZARDS_COUNT = 4;
   var DEBOUNCE_INTERVAL = 300; // ms
+  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 
   window.const = {
@@ -55,6 +56,7 @@
     TIMEOUT_IN_MS: TIMEOUT_IN_MS,
     WIZARDS_COUNT: WIZARDS_COUNT,
     DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,
+    FILE_TYPES: FILE_TYPES,
   };
 
 })();
